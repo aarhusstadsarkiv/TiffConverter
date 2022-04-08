@@ -41,20 +41,28 @@ namespace TiffConverter
 
         private void ConvertButton_Click(object sender, EventArgs e)
         {
+            // Get the checked radio button.
             RadioButton checkedRadiobutton = OutputColorGroup.Controls.OfType<RadioButton>().First(x => x.Checked);
-            string outputFile = OutputDirLabel.Text + "\\1.tif";
+            /* 
+                Initialize a ColorSettings object.
+                The ColorSettings object is used to retrieve and store the
+                device and compression settings for converting the pdf.
+            */
 
             ColorSettings colorSettings = new ColorSettings();
+            
             Process convertProcess = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             
-            startInfo.FileName = "gswin64c";
+            string outputFile = OutputDirLabel.Text + "\\1.tif";
             colorSettings.InitSettings(checkedRadiobutton.Text);
+            
             String arguments = String.Format(@"-dBATCH -dNOPAUSE -sDEVICE={0} -sColorConversionStrategy={1}
                                             -r300 -sCompression={2} -sOutputFile={3} {4}",
                                            colorSettings.Device, "UseDeviceIndependentColor", colorSettings.Compression, outputFile,
                                            SelectedFileLabel.Text);
             
+            startInfo.FileName = "gswin64c";
             startInfo.Arguments = arguments;
             startInfo.CreateNoWindow = true;
             startInfo.RedirectStandardOutput = true;
