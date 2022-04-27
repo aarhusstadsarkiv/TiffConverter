@@ -22,7 +22,7 @@ namespace TiffConverter
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Title = "Select a PDF file";
-            fileDialog.Filter = "PDFfiler (*.pdf)|*.pdf";
+            fileDialog.Filter = "PDF filer (*.pdf)|*.pdf";
            
             if(fileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -58,7 +58,7 @@ namespace TiffConverter
             colorSettings.InitSettings(checkedRadiobutton.Text);
             
             String arguments = String.Format(@"-dBATCH -dNOPAUSE -sDEVICE={0} -sColorConversionStrategy={1}
-                                            -r300 -sCompression={2} -sOutputFile={3} {4}",
+                                            -r300 -sCompression={2} -sOutputFile={3} ""{4}""",
                                            colorSettings.Device, "UseDeviceIndependentColor", colorSettings.Compression, outputFile,
                                            SelectedFileLabel.Text);
             
