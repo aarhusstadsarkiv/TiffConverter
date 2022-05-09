@@ -26,11 +26,11 @@ namespace TiffConverter
            
             if(fileDialog.ShowDialog() == DialogResult.OK)
             {
-                SelectedFileLabel.Text = fileDialog.FileName;
+                    SelectedFileLabel.Text = fileDialog.FileName;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Select_dir_button_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowser = new FolderBrowserDialog();
             if(folderBrowser.ShowDialog() == DialogResult.OK)
